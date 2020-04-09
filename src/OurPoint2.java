@@ -97,36 +97,7 @@ public class OurPoint2 {
 		dx = dx * -1;
 		dy = dy * -1;
 		
-		
-		/*
-		System.out.println("Current dx " + dx);
-		System.out.println("Current dy " + dy);
-		
-		double angleRad = Math.atan(
-				((xyCoords.y - startY)* 1.0)/((xyCoords.x -startX)*1.0)
-				);
-		System.out.println( "the angle in radians is: " + angleRad );
-		
-		double newAngleRad = angleRad + (((int)(Math.random() * 5) - 2) * oneRadian);
-		
-		System.out.println( "the new angle in radians is: " + newAngleRad );
-		
-		double newDY = Math.sin(newAngleRad) * 5;
-		double newDX = Math.cos(newAngleRad) * 5;
-		
-		System.out.println("newDX is " + newDX);
-		System.out.println("newDY is " + newDY);
-		
-		dx = (int)(newDX * -1.0);
-		dy = (int)(newDY * -1.0);
-		
-		System.out.println("New dx " + dx);
-		System.out.println("New dy " + dy);
-		
-		xyCoords.x += dx;
-		xyCoords.y += dy;	
-		*/
-		
+
 	}
 	
 	
