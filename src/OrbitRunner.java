@@ -4,7 +4,7 @@ public class OrbitRunner {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Java
+		
 		int fWidth = 800;
 		int fHeight = 550;
 		
