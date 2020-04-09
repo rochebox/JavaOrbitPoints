@@ -4,31 +4,42 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class OurPoint2 {
+public class OurPoint3 {
 	
 	Point xyCoords;  //normal x, y coords
-	int startX, startY;
-	int dx;   // speed along x axis 5 and -5
-	int dy;   // speed along y axis 5 and -5
+	int startX, startY;  //the place where you clicked
+	int centerX, centerY; //a center point picked to the left of the start coordinate
+	int dy, dx;   // speed along y axis 5 and -5
 	
 	//We would include ellipse equation points
 	
 	int radiusSize;
+	int angleSpeed;  //degrees per frame (up to 35 but at least 5 + or -
+	int currentAngle;  // where you are on the circle
 	
 	
 	
 	//constructor...
-	public OurPoint2(Point p) {
+	public OurPoint3(Point p) {
 		// copy p into our class field
+		
 		xyCoords = p;
 		startX = xyCoords.x;
 		startY = xyCoords.y;
-		
-		// set dx to be between -5 and 5
-		dx = (int)(Math.random() * 11) - 5;
-		dy = (int)(Math.random() * 11) - 5;	
-		
 		radiusSize = (int)(Math.random() * 40) + 15;
+		centerX = startX - radiusSize ;
+		centerY = startY;
+		
+		
+		currentAngle = 0;  //we can change this
+		angleSpeed = (int)(Math.random() * 30) + 5;
+		//angleSpeed = 10;
+		//with this its never 0
+		if((int) (Math.random() * 100) + 1 > 50) {
+			angleSpeed *= -1;
+		}
+		//System.out.println("angle speed is " + angleSpeed);
+
 	}
 	
 	//Access Methods
@@ -58,6 +69,18 @@ public class OurPoint2 {
 	}
 	// changes the x and y value by the dx and dy
 	public void movePoint() {
+		
+		//New way to move a point 
+		
+		currentAngle = (currentAngle + angleSpeed)% 360;
+		//System.out.println("Current angle is " + currentAngle);
+		double currentRad = currentAngle * (Math.PI/180.0);
+		//System.out.println("Current radians is " + currentRad);
+		
+		xyCoords.x = (int)(centerX + ((Math.cos(currentRad)) * radiusSize));
+		xyCoords.y = (int)(centerY + ((Math.sin(currentRad)) * radiusSize));
+	 
+		/* 
 		xyCoords.x += dx;
 		xyCoords.y += dy;	
 		//now check to see if they are out of the circle	
@@ -74,6 +97,7 @@ public class OurPoint2 {
 			//System.out.println("I need to change direction.");
 			changeDirection();
 		}
+		*/
 		
 	}
 	
@@ -85,9 +109,7 @@ public class OurPoint2 {
 				((x2-x1)*(x2-x1)* 1.00) + ((y2-y1)*(y2-y1)*1.00)	
 				
 				));
-		
-		
-		
+
 		return dist;
 	}
 	
@@ -145,8 +167,8 @@ public class OurPoint2 {
 		
 		g2.setColor(Color.GRAY);
 		g2.drawOval(
-				startX - radiusSize, 
-				startY - radiusSize, 
+				centerX - radiusSize, 
+				centerY - radiusSize, 
 				radiusSize * 2, radiusSize * 2);
 			
 		

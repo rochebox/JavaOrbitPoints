@@ -14,7 +14,8 @@ public class OrbitPanel extends JPanel implements MouseListener, ActionListener{
 	
 	private static final long serialVersionUID = -6612396446201779741L;
 	//
-	ArrayList<OurPoint2> pList = new ArrayList<OurPoint2>();
+	
+	ArrayList<OurPoint3> pList = new ArrayList<OurPoint3>();
 	int pWidth, pHeight;
 	Color bColor = new Color(212, 253, 255);
 	Timer t;
@@ -29,6 +30,7 @@ public class OrbitPanel extends JPanel implements MouseListener, ActionListener{
 		
 		t.restart();
 		this.addMouseListener(this);
+		System.out.println("Making this orbit panel");
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -37,10 +39,11 @@ public class OrbitPanel extends JPanel implements MouseListener, ActionListener{
 		
 		
 		int pointSize = 11;
-		for(OurPoint2 p: pList) {
+		for(OurPoint3 p: pList) {
+			p.drawOuterCircle(g);
 			g.setColor(Color.BLACK);
 			g.fillOval(p.getX()-5, p.getY()-5, pointSize, pointSize);
-			p.drawOuterCircle(g);
+			
 			
 		}
 	}
@@ -48,7 +51,7 @@ public class OrbitPanel extends JPanel implements MouseListener, ActionListener{
 	private void addPoint(int newX, int newY) {
 		
 		pList.add( 
-				new OurPoint2(new Point(newX, newY))
+				new OurPoint3(new Point(newX, newY))
 				);
 		
 	}
@@ -95,7 +98,7 @@ public class OrbitPanel extends JPanel implements MouseListener, ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		//System.out.println("Timer is working");
-		for(OurPoint2 p: pList) {
+		for(OurPoint3 p: pList) {
 			p.movePoint();
 		}
 		repaint();
