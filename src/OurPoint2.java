@@ -97,20 +97,7 @@ public class OurPoint2 {
 		dx = dx * -1;
 		dy = dy * -1;
 		
-		 
-		 if (
-				getDistance(xyCoords.x, xyCoords.y, startX, startY)
-				>=
-				radiusSize
-				) {
-
-			//move point back
-			xyCoords.x -= dx;
-			xyCoords.y -= dy;	
-			//System.out.println("I need to change direction.");
-			changeDirection();
-		}
-
+	
 		
 		
 
